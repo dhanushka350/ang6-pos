@@ -1,0 +1,54 @@
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile>
+    <form [formGroup]="itemForm" (submit)="submitProduct(itemForm.value)" id="item-form">
+      <div class="form-group">
+        <label>Item Code :</label>
+        <input class="form-control" formControlName="code">
+
+        <label>Item Name :</label>
+        <input class="form-control" formControlName="item">
+
+        <label>Quantity :</label>
+        <input class="form-control" formControlName="quantity">
+
+        <label>Unit Price :</label>
+        <input class="form-control" formControlName="unit_price">
+      </div>
+      <button mat-raised-button color="primary" type="submit">Primary</button>
+    </form>
+  </mat-grid-tile>
+</mat-grid-list>
+<table class="table table-striped" [mfData]="products" #mf="mfDataTable" [mfRowsOnPage]="5" [mfActivePage]="10">
+  <thead>
+  <tr>
+    <th style="width: 10%;font-weight: bold;">
+      <mfDefaultSorter by="name">code</mfDefaultSorter>
+    </th>
+    <th style="width: 60%;font-weight: bold;">
+      <mfDefaultSorter by="email">name</mfDefaultSorter>
+    </th>
+    <th style="width: 10%;font-weight: bold;">
+      <mfDefaultSorter by="age">unit price</mfDefaultSorter>
+    </th>
+    <th style="width: 20%;font-weight: bold;">
+      <mfDefaultSorter by="city">qty</mfDefaultSorter>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of products">
+    <td>{{product.id}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.name}}</td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="4">
+      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+    </td>
+  </tr>
+  </tfoot>
+</table>
+
