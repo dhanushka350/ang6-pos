@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../shared/product.service';
-import any = jasmine.any;
 
 @Component({
   selector: 'app-product',
@@ -27,11 +26,12 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.productService.getAllProducts().subscribe(data => {
       this.products = data;
+      console.log(this.products);
     });
   }
 
   submitProduct() {
-    alert('saving product');
+    // alert('saving product');
     this.productService.createProduct(this.itemForm.value);
   }
 }

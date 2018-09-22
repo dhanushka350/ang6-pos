@@ -28,7 +28,9 @@ export class ProductService {
 
   createProduct(product: Product) {
     console.log(product);
-    this.http.post('/api/product/save', product);
+    this.http.post('/api/product/save', product).subscribe(data => {
+      console.log(data);
+    });
   }
 }
 
