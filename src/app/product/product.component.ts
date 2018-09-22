@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../shared/product.service';
-import any = jasmine.any;
+
 
 @Component({
   selector: 'app-product',
