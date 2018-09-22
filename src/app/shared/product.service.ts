@@ -13,7 +13,7 @@ export class ProductService {
   }
 
   getAllProducts(): Observable<any> {
-    return this.http.get( '/product/all/products');
+    return this.http.get( '/api/product/all');
   }
 
   save(product: any) {
