@@ -12,6 +12,7 @@ import {MaterialModule} from './material/material.module';
 import {ProductService} from './shared/product.service';
 import {HttpClientModule} from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,5 +30,11 @@ import {HttpClientModule} from '@angular/common/http';
   providers: [ProductService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
+export class AppModule {}
+export class Product {
+  public id: number;
+  public name: string;
+  public qty: number;
+  public unitPrice: number;
 }
+

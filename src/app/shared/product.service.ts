@@ -1,22 +1,34 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
 import {Http, Headers} from '@angular/http';
+import {catchError} from 'rxjs/internal/operators';
+import {Product} from '../app.module';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductService {
-  public API = '//localhost:8080';
+
 
   constructor(private http: HttpClient) {
   }
 
   getAllProducts(): Observable<any> {
-    return this.http.get( '/api/product/all');
+    return this.http.get('/api/product/all');
   }
 
-  save(product: any) {
-    return this.http.post(this.API + '/product/save', product);
+  createProduct(product: Product) {
+    console.log(product);
+    this.http.post('/api/product/save', product);
   }
 }
+

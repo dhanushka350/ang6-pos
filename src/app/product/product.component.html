@@ -3,16 +3,16 @@
     <form [formGroup]="itemForm" (submit)="submitProduct(itemForm.value)" id="item-form">
       <div class="form-group">
         <label>Item Code :</label>
-        <input class="form-control" formControlName="code">
+        <input class="form-control" formControlName="id">
 
         <label>Item Name :</label>
-        <input class="form-control" formControlName="item">
+        <input class="form-control" formControlName="name">
 
         <label>Quantity :</label>
-        <input class="form-control" formControlName="quantity">
+        <input class="form-control" formControlName="qty">
 
         <label>Unit Price :</label>
-        <input class="form-control" formControlName="unit_price">
+        <input class="form-control" formControlName="unitPrice">
       </div>
       <button mat-raised-button color="primary" type="submit">Primary</button>
     </form>

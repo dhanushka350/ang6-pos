@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../shared/product.service';
+import any = jasmine.any;
 
 @Component({
   selector: 'app-product',
@@ -13,10 +14,10 @@ export class ProductComponent implements OnInit {
   products: Array<any>;
 
   itemForm = new FormGroup({
-    code: new FormControl(),
-    item: new FormControl(),
-    quantity: new FormControl('', [Validators.pattern('[0-9]*')]),
-    unit_price: new FormControl('', [Validators.pattern('[0-9]*')]),
+    id: new FormControl(),
+    name: new FormControl(),
+    qty: new FormControl('', [Validators.pattern('[0-9]*')]),
+    unitPrice: new FormControl('', [Validators.pattern('[0-9]*')]),
 
   });
 
@@ -29,9 +30,9 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  submitProduct(data: any) {
-    console.log(this.productService.save(data));
-    this.itemForm.reset();
+  submitProduct() {
+    alert('saving product');
+    this.productService.createProduct(this.itemForm.value);
   }
 }
 
