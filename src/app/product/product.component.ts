@@ -8,7 +8,6 @@ import {ProductService} from '../shared/product.service';
   styleUrls: ['./product.component.scss']
 })
 
-
 export class ProductComponent implements OnInit {
   products: Array<any>;
 
@@ -24,15 +23,54 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.allProducts();
+  }
+
+  resetForm() {
+    this.itemForm.reset();
+  }
+
+  allProducts() {
     this.productService.getAllProducts().subscribe(data => {
       this.products = data;
-      console.log(this.products);
     });
   }
 
   submitProduct() {
-    // alert('saving product');
-    this.productService.createProduct(this.itemForm.value);
+    this.productService.createProduct(this.itemForm.value).subscribe(data => {
+      if (data) {
+        alert('Item has been saved.');
+        this.allProducts();
+        this.resetForm();
+      } else {
+        alert('Failed to save item.');
+      }
+    });
+  }
+
+  updateProduct(product: any) {
+    this.itemForm.setValue({
+      id: product.id,
+      name: product.name,
+      qty: product.qty,
+      unitPrice: product.unitPrice
+    });
+  }
+
+  deleteProduct(product: any) {
+    if (confirm('Are you sure you want to delete this item?')) {
+      this.productService.deleteProduct(product.id).subscribe(
+        (result) => {
+          if (result) {
+            alert('Item has been deleted successfully');
+          } else {
+            alert('Failed to delete the item');
+          }
+          this.allProducts();
+        }
+      );
+    }
   }
 }
 
