@@ -1,8 +1,16 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
+import {Http, Headers} from '@angular/http';
+import {catchError} from 'rxjs/internal/operators';
 import {Product} from '../app.module';
 
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +26,11 @@ export class ProductService {
     return this.http.get('/api/product/all');
   }
 
-  createProduct(product: Product): Observable<boolean> {
+  createProduct(product: Product) {
     console.log(product);
-    return this.http.post<boolean>('/api/product/save', product);
+    this.http.post('/api/product/save', product).subscribe(data => {
+      console.log(data);
+    });
   }
 }
 
