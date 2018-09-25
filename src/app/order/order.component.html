@@ -1,3 +1,72 @@
-<p>
-  order works!
-</p>
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile>
+    <form [formGroup]="customerForm">
+      <div class="form-group">
+        <label>Code :</label>
+        <input class="form-control" formControlName="id" [value]="customerCode" #cust
+               (keyup)="customerCode = cust.value;getCustomerByCode()">
+
+        <label>Customer Name :</label>
+        <input class="form-control" formControlName="name" [value]="customerName" disabled="disabled">
+      </div>
+      <table class="table table-striped" [mfData]="" #mf="mfDataTable" [mfRowsOnPage]="5" [mfActivePage]="10">
+        <thead>
+        <tr>
+          <th style="width: 20%;font-weight: bold;">
+            <mfDefaultSorter>item</mfDefaultSorter>
+          </th>
+          <th style="width: 20%;font-weight: bold;">
+            <mfDefaultSorter>unit price</mfDefaultSorter>
+          </th>
+          <th style="width: 10%;font-weight: bold;">
+            <mfDefaultSorter>qty</mfDefaultSorter>
+          </th>
+          <th style="width: 20%;font-weight: bold;">
+            <mfDefaultSorter>sub total</mfDefaultSorter>
+          </th>
+          <th style="width: 30%;font-weight: bold;">
+            <mfDefaultSorter>action</mfDefaultSorter>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{product.id+"-"+product.name}}</td>
+          <td>{{product.unitPrice}}</td>
+          <td>{{product.qty}}</td>
+          <td>{{subs}}</td>
+          <td>
+            <button mat-button color="warn">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="4">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <form [formGroup]="item">
+      <div class="form-group">
+        <label>Item Code :</label>
+        <input class="form-control" formControlName="id" [value]="itemCode" #icode
+               (keyup)="itemCode = icode.value;getItem()">
+
+        <label>Item Name :</label>
+        <input class="form-control" formControlName="name" [value]="itemName" disabled="disabled">
+
+        <label>Unit Price :</label>
+        <input class="form-control" formControlName="unitPrice" [value]="itemPrice" disabled="disabled">
+
+        <label>Quantity :</label>
+        <input class="form-control" formControlName="qty" [value]="itemQty">
+      </div>
+      <button mat-raised-button color="primary" type="button" (click)="addToList()">Add To Cart</button>
+    </form>
+  </mat-grid-tile>
+</mat-grid-list>

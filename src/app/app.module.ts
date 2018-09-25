@@ -10,6 +10,7 @@ import {OrderComponent} from './order/order.component';
 import {MaterialModule} from './material/material.module';
 
 import {ProductService} from './shared/product.service';
+import {CustomerService} from './shared/customer.service';
 import {HttpClientModule} from '@angular/common/http';
 
 
@@ -27,14 +28,21 @@ import {HttpClientModule} from '@angular/common/http';
     MaterialModule,
     HttpClientModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, CustomerService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
+
 export class Product {
   public id: number;
   public name: string;
   public qty: number;
   public unitPrice: number;
+}
+
+export class Customer {
+  public code: number;
+  public name: string;
 }
 

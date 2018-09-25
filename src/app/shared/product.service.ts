@@ -25,5 +25,9 @@ export class ProductService {
   deleteProduct(id: number) {
     return this.http.delete('/api/product/delete/' + id);
   }
+
+  getItemByCoded(code: string): Observable<any> {
+    return this.http.get('/api/product//by/code/' + code);
+  }
 }
 
